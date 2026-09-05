@@ -272,16 +272,16 @@ async function buildFinalStrip() {
   const W = 720;
   const photoW = 540;
   const photoH = 405;
-  const gap = 24;
-  const top = 132;
-  const bottom = 120;
+  const gap = 28;
+  const top = 62;
+  const bottom = 62;
 
   finalCanvas.width = W;
   finalCanvas.height = top + (photoH * 4) + (gap * 3) + bottom;
 
   finalCtx.clearRect(0, 0, finalCanvas.width, finalCanvas.height);
 
-  // Use the user-provided cute plush/bow wallpaper as the photo-strip background.
+  // Use the supplied plush/bow wallpaper as the full strip background.
   let borderImg = null;
   try {
     borderImg = await loadImage("assets/strip-border.png");
@@ -289,26 +289,12 @@ async function buildFinalStrip() {
 
   if (borderImg) {
     drawImageCover(finalCtx, borderImg, 0, 0, W, finalCanvas.height);
-    finalCtx.fillStyle = "rgba(255, 250, 248, .20)";
+    finalCtx.fillStyle = "rgba(255, 250, 248, .12)";
     finalCtx.fillRect(0, 0, W, finalCanvas.height);
   } else {
     finalCtx.fillStyle = "#fff8f6";
     finalCtx.fillRect(0, 0, W, finalCanvas.height);
   }
-
-  // Header panel so the wording remains legible over the pattern.
-  finalCtx.fillStyle = "rgba(255, 250, 252, .86)";
-  drawRoundedRect(finalCtx, 68, 22, W - 136, 92, 28);
-  finalCtx.fill();
-
-  finalCtx.textAlign = "center";
-  finalCtx.fillStyle = "#dc739e";
-  finalCtx.font = "700 20px Arial";
-  finalCtx.fillText("the first of our many photobooths", W / 2, 54);
-
-  finalCtx.fillStyle = "#7f3e5b";
-  finalCtx.font = "700 31px Arial";
-  finalCtx.fillText("For my little one, qiqi ♡", W / 2, 91);
 
   const imgs = await Promise.all(photos.map(loadImage));
 
@@ -316,10 +302,10 @@ async function buildFinalStrip() {
     const x = (W - photoW) / 2;
     const y = top + i * (photoH + gap);
 
-    // Polaroid-like white frame over the patterned border.
+    // clean white frame around each photo
     finalCtx.save();
-    finalCtx.shadowColor = "rgba(111, 58, 82, .17)";
-    finalCtx.shadowBlur = 16;
+    finalCtx.shadowColor = "rgba(111, 58, 82, .16)";
+    finalCtx.shadowBlur = 15;
     finalCtx.shadowOffsetY = 6;
     finalCtx.fillStyle = "rgba(255,255,255,.97)";
     drawRoundedRect(finalCtx, x - 12, y - 12, photoW + 24, photoH + 24, 24);
@@ -332,21 +318,14 @@ async function buildFinalStrip() {
     drawImageCover(finalCtx, img, x, y, photoW, photoH);
     finalCtx.restore();
 
-    // tiny pink bow between photos
+    // tiny bow separator only
     if (i < 3) {
+      finalCtx.textAlign = "center";
       finalCtx.fillStyle = "#df8fae";
-      finalCtx.font = "25px Arial";
-      finalCtx.fillText("୨୧", W / 2, y + photoH + 21);
+      finalCtx.font = "24px Arial";
+      finalCtx.fillText("୨୧", W / 2, y + photoH + 23);
     }
   });
-
-  finalCtx.fillStyle = "rgba(255,250,252,.88)";
-  drawRoundedRect(finalCtx, 120, finalCanvas.height - 82, W - 240, 52, 24);
-  finalCtx.fill();
-
-  finalCtx.fillStyle = "#9a5874";
-  finalCtx.font = "700 22px Arial";
-  finalCtx.fillText("another memory for us ♡", W / 2, finalCanvas.height - 48);
 }
 function resetBooth() {
   photos = [];
