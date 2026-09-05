@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Little Photobooth ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="floating floating-one">♡</div>
+  <div class="floating floating-two">✿</div>
+  <div class="floating floating-three">♡</div>
+
+  <main class="app">
+    <section id="welcomeScreen" class="screen active">
+      <div class="card welcome-card">
+        <div class="plush-decor plush-left">
+          <div class="ear ear-left"></div>
+          <div class="ear ear-right"></div>
+          <div class="plush-face">• ᴗ •</div>
+        </div>
+
+        <p class="eyebrow">a tiny booth made just for us</p>
+        <h1>Our Little<br><span>Photobooth ♡</span></h1>
+        <p class="subtitle">
+          Four pictures, one cute little strip, and another memory to keep.
+        </p>
+
+        <button id="startBtn" class="primary-btn">start photobooth ✿</button>
+        <p class="privacy-note">Your photos stay on this device.</p>
+
+        <div class="plush-decor plush-right">
+          <div class="ear ear-left"></div>
+          <div class="ear ear-right"></div>
+          <div class="plush-face">˶ᵔ ᵕ ᵔ˶</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cameraScreen" class="screen">
+      <div class="topbar">
+        <button id="backBtn" class="ghost-btn">← back</button>
+        <div class="counter-pill"><span id="shotCounter">photo 1 of 4</span></div>
+      </div>
+
+      <div class="camera-layout">
+        <div class="camera-card">
+          <div class="camera-frame">
+            <video id="video" autoplay playsinline muted></video>
+            <div class="camera-overlay">
+              <div id="countdown" class="countdown"></div>
+              <div id="flash" class="flash"></div>
+            </div>
+          </div>
+
+          <p id="cameraHint" class="camera-hint">get ready ♡</p>
+
+          <div class="controls">
+            <button id="captureBtn" class="primary-btn">take photo</button>
+          </div>
+        </div>
+
+        <aside class="preview-card">
+          <p class="preview-title">your strip so far</p>
+          <div id="miniStrip" class="mini-strip">
+            <div class="empty-slot">♡</div>
+            <div class="empty-slot">♡</div>
+            <div class="empty-slot">♡</div>
+            <div class="empty-slot">♡</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen">
+      <div class="result-layout">
+        <div class="result-copy">
+          <p class="eyebrow">all done!</p>
+          <h2>another memory<br>for us ♡</h2>
+          <p>Your little photo strip is ready.</p>
+
+          <div class="result-buttons">
+            <button id="downloadBtn" class="primary-btn">save photo strip</button>
+            <button id="retakeBtn" class="secondary-btn">retake</button>
+          </div>
+        </div>
+
+        <div class="strip-wrapper">
+          <canvas id="finalCanvas"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <canvas id="captureCanvas" hidden></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
