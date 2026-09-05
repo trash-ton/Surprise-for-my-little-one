@@ -23,3 +23,7 @@ Then you can replace the simple plush decorations in `index.html` with, for exam
 and style it in `style.css`.
 
 The included design intentionally uses original plush-inspired decorations rather than bundled copyrighted character art.
+
+
+## Custom version
+This version includes the personalized qiqi landing page and the supplied cute plush/bow image as the generated photo-strip border.
